@@ -8,14 +8,15 @@ const router = express.Router();
 
 /* ROTA DE INSERÇÃO DE MÚSICA */
 router.post('/inserirMusica', async (req, res) => {
-    const { titulo_musica, ano_lancamento, url, cod_categoria } = req.body;  // Recebendo dados da música
+    const { titulo_musica, nome_banda, ano_lancamento, url, cod_categoria } = req.body;
 
     try {
-        const newMusic = await Music.create({ 
-            titulo_musica, 
-            ano_lancamento, 
-            url, 
-            cod_categoria 
+        const newMusic = await Music.create({
+            titulo_musica,
+            nome_banda,
+            ano_lancamento,
+            url,
+            cod_categoria
         });
         return res.status(201).json({
             errorStatus: false,
@@ -95,12 +96,13 @@ router.delete('/excluirMusica/:cod_musica', (req, res) => {
 
 /* ROTA DE ALTERAÇÃO DE MÚSICA */
 router.put('/alterarMusica', (req, res) => {
-    let { cod_musica, titulo_musica, ano_lancamento, url, cod_categoria } = req.body;
+    const { cod_musica, titulo_musica, nome_banda, ano_lancamento, url, cod_categoria } = req.body;
 
     Music.update({
-        titulo_musica, 
-        ano_lancamento, 
-        url, 
+        titulo_musica,
+        nome_banda,
+        ano_lancamento,
+        url,
         cod_categoria
     }, { where: { cod_musica } })
     .then(() => {
@@ -110,6 +112,7 @@ router.put('/alterarMusica', (req, res) => {
         });
     })
     .catch((error) => {
+        console.error('Erro ao alterar música:', error);
         return res.status(400).json({
             errorStatus: true,
             mensageStatus: 'HOUVE UM ERRO AO ALTERAR A MÚSICA',

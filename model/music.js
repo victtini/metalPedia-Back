@@ -1,16 +1,6 @@
-// models/Musica.js
 const Sequelize = require('sequelize');
 const connection = require('../database/database');
-const modelCategoria = require('./modelCategoria'); // Importar o modelo de Categoria para a relação
-
-/*
-PARAMETROS DO MÉTODO DEFINE
-1 - NOME DA TABELA - STRING
-2 - OBJETO JSON: 
-    NOME DO CAMPO DA TABELA
-    TIPO DE DADO DO CAMPO DA TABELA
-    REGRAS DO CAMPO DA TABELA (NULL, NOT NULL, DEFAULT...ETC)
-*/
+const modelCategoria = require('./modelCategoria');
 
 const modelMusica = connection.define('tblMusica', {
     cod_musica: {
@@ -22,8 +12,12 @@ const modelMusica = connection.define('tblMusica', {
         type: Sequelize.STRING(100),
         allowNull: false
     },
-    ano_lancamento: {
-        type: Sequelize.INTEGER,
+    nome_banda: { // Novo campo para o nome da banda ou cantor
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+    ano_lancamento: { // Modificado para DATE para registrar o ano de lançamento completo
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     url: {
@@ -39,7 +33,6 @@ const modelMusica = connection.define('tblMusica', {
     }
 });
 
-// Sincronizar com o banco de dados
-modelMusica.sync({ alter: true });
+modelMusica.sync({ alter: true }); // Atualiza a tabela para refletir as alterações
 
 module.exports = modelMusica;
