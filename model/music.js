@@ -33,6 +33,6 @@ const modelMusica = connection.define('tblMusica', {
     }
 });
 
-modelMusica.sync({ alter: true }); // Atualiza a tabela para refletir as alterações
+// modelMusica.sync({ alter: true }); // Atualiza a tabela para refletir as alterações
 
 module.exports = modelMusica;

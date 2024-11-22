@@ -24,7 +24,7 @@ const modelCategoria = connection.define(
         }
     }
 );
-modelCategoria.sync({ alter: true });
+// modelCategoria.sync({ alter: true });
 
 
 module.exports = modelCategoria;

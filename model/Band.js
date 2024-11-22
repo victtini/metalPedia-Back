@@ -15,13 +15,13 @@ const Band = connection.define('tbl_banda', {
 });
 
 // Sincroniza o modelo Banda
-Band.sync({ alter: true })  // Evita recriar a tabela, faz apenas alterações necessárias
-    .then(() => {
-        console.log('Tabela Band sincronizada com sucesso!');
-    })
-    .catch((error) => {
-        console.error('Erro ao sincronizar tabela Band:', error);
-    });
+// Band.sync({ alter: true })  // Evita recriar a tabela, faz apenas alterações necessárias
+//     .then(() => {
+//         console.log('Tabela Band sincronizada com sucesso!');
+//     })
+//     .catch((error) => {
+//         console.error('Erro ao sincronizar tabela Band:', error);
+//     });
     
 
 module.exports = Band;
